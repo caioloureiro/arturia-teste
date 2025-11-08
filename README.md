@@ -1,114 +1,185 @@
-# Projeto em Branco
+# E-commerce - Teste Prático Arturia
 
-Este é um projeto template/boilerplate que serve como base para iniciar novos projetos web. Contém uma estrutura organizacional padrão e diretrizes de desenvolvimento estabelecidas.
+## 📋 Descrição do Projeto
 
-## 🚀 Sobre o Template
+Aplicação web de e-commerce desenvolvida para o processo seletivo de Dev JavaScript da Arturia. A aplicação permite que usuários visualizem produtos, adicionem ao carrinho e finalizem compras, além de consultar o histórico de pedidos.
 
-Este template foi criado para acelerar o desenvolvimento de novos projetos, fornecendo:
-- Estrutura MVC organizada
-- Diretrizes de codificação padronizadas
-- Arquivos base configurados
-- Sistema de rotas básico
+## 🚀 Tecnologias Utilizadas
 
-## 📁 Estrutura do Projeto
+- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
+- **Backend**: PHP 7+
+- **Banco de Dados**: WebSQL (navegador)
+- **Arquitetura**: MVC Simplificado
+
+## ✨ Funcionalidades
+
+### ✅ Implementadas
+
+1. **Catálogo de Produtos**
+   - Listagem de produtos com código, descrição, preço e imagem
+   - Layout em grid responsivo
+   - Produtos armazenados no WebSQL
+
+2. **Carrinho de Compras**
+   - Adicionar produtos ao carrinho
+   - Aumentar/diminuir quantidade
+   - Remover produtos
+   - Cálculo automático do total
+   - Badge com quantidade de itens
+   - Persistência via LocalStorage
+
+3. **Finalização de Pedido**
+   - Salvar pedido no WebSQL
+   - Gerar número do pedido
+   - Limpar carrinho após finalização
+   - Mensagem de sucesso
+
+4. **Consulta de Pedidos**
+   - Listagem de todos os pedidos
+   - Detalhes de cada pedido (produtos, quantidades, valores)
+   - Data e hora do pedido
+   - Status do pedido
+
+5. **Design Responsivo**
+   - Layout adaptável para desktop e mobile
+   - Media queries para diferentes tamanhos de tela
+   - Interface moderna e intuitiva
+
+## 🗄️ Estrutura do Banco de Dados (WebSQL)
+
+### Tabela: usuarios
+- id (INTEGER PRIMARY KEY)
+- nome (TEXT)
+- email (TEXT)
+- created_at (DATETIME)
+
+### Tabela: produtos
+- id (INTEGER PRIMARY KEY)
+- codigo (TEXT)
+- descricao (TEXT)
+- preco (REAL)
+- imagem (TEXT)
+
+### Tabela: pedidos
+- id (INTEGER PRIMARY KEY AUTOINCREMENT)
+- usuario_id (INTEGER)
+- total (REAL)
+- status (TEXT)
+- created_at (DATETIME)
+
+### Tabela: itens_pedido
+- id (INTEGER PRIMARY KEY AUTOINCREMENT)
+- pedido_id (INTEGER)
+- produto_id (INTEGER)
+- quantidade (INTEGER)
+- preco_unitario (REAL)
+
+## 📁 Estrutura de Arquivos
 
 ```
-projeto-em-branco/
-├── index.php              # Ponto de entrada principal
-├── controller/             # Controladores e funções
-│   ├── components.php
-│   ├── funcoes.php
-│   └── info.php
-├── model/                  # Modelos e dados
-│   ├── arrays.php
-│   ├── exemplo.php
-│   ├── paginas_fixas.php
-│   └── paginas.php
-├── view/                   # Views e templates
-│   ├── 404.php
-│   ├── cabecalho.php
-│   ├── conteudo.php
-│   ├── footer.php
-│   ├── head.php
-│   ├── home-0.php
-│   ├── home-base.php
-│   └── scripts-bottom.php
-├── routes/                 # Sistema de rotas
-│   ├── 404.php
-│   ├── conteudo.php
-│   ├── css.php
+arturia-teste/
+├── controller/          # Lógica de controle
+├── model/              # Models e arrays de dados
+│   └── paginas_fixas.php
+├── routes/             # Rotas da aplicação
 │   ├── home.php
-│   └── main.php
-├── css/                    # Estilos CSS
-│   ├── dinamico.css
-│   ├── global.css
-│   ├── home-0.css
-│   ├── root.css
-│   └── scrollbar.css
-├── js/                     # Scripts JavaScript
-│   ├── motor-bottom.js
-│   └── motor-top.js
-├── img/                    # Imagens e assets
-└── templates/              # Templates e documentação
-    └── preferences.md      # Diretrizes de desenvolvimento
+│   ├── carrinho.php
+│   └── pedidos.php
+├── view/               # Views/Templates
+│   ├── cabecalho.php
+│   ├── home-0.php
+│   ├── carrinho.php
+│   └── pedidos.php
+├── css/                # Estilos
+│   ├── root.css        # Variáveis CSS
+│   └── ecommerce.css   # Estilos do e-commerce
+├── js/                 # JavaScript
+│   ├── database.js     # Gerenciamento WebSQL
+│   ├── carrinho.js     # Lógica do carrinho
+│   └── app.js          # Funcionalidades gerais
+├── index.php           # Arquivo principal
+└── README.md           # Documentação
 ```
 
-## 🛠️ Tecnologias
+## 🎨 Diretrizes de Código
 
-- **PHP** - Backend e lógica do servidor
-- **HTML5** - Estrutura semântica
-- **CSS3** - Estilização e layout
-- **JavaScript** - Interatividade e comportamento
+O projeto segue as diretrizes definidas em `templates/preferences.md`:
 
-## 📋 Diretrizes de Desenvolvimento
+- Indentação: **TAB**
+- Layout: **Float** para estruturas simples
+- CSS: Uso de **VW** para responsividade (nunca 100vw, sempre 100%)
+- Cores: Variáveis CSS em `:root`
+- Propriedades específicas (não shorthands)
+- Marcadores Start/End em cada arquivo
 
-### CSS
-- Indentação: sempre TAB
-- Layout: foco em Float para layouts simples
-- Responsividade: usar VW, evitar VH e PX quando possível
-- Cores: usar variáveis CSS em `:root`
-- Evitar shorthands genéricos (use propriedades específicas)
+## 🔧 Como Executar
 
-### Estrutura de Arquivos
-- Cada arquivo deve ter marcadores `/* Start */` e `/* End */`
-- Evitar comentários inline em CSS
-- Usar includes/require PHP para injetar CSS/JS
+1. **Requisitos**:
+   - Servidor web com PHP 7+
+   - Navegador compatível com WebSQL (Chrome ou Safari)
 
-### Organização
-- Seguir padrão MVC
-- Documentação em `templates/preferences.md`
-- Manter arquivos `index.html` em pastas para segurança
+2. **Instalação**:
+   ```bash
+   # Clone o repositório
+   git clone [URL_DO_REPOSITORIO]
+   
+   # Navegue até a pasta
+   cd arturia-teste
+   
+   # Inicie um servidor PHP local
+   php -S localhost:8000
+   ```
 
-## 🚀 Como Usar
+3. **Acesso**:
+   - Abra o navegador em: `http://localhost:8000`
 
-1. **Clone/copie este template** para um novo projeto
-2. **Renomeie a pasta** para o nome do seu projeto
-3. **Configure as rotas** em `routes/`
-4. **Customize os estilos** em `css/`
-5. **Desenvolva as views** em `view/`
-6. **Implemente a lógica** em `controller/` e `model/`
+## 📱 Compatibilidade
 
-## 📝 Configuração Inicial
+- ✅ Google Chrome
+- ✅ Safari
+- ✅ Opera
+- ⚠️ Firefox (WebSQL descontinuado, usar Chrome ou Safari)
+- ⚠️ Edge (usar Chrome)
 
-1. Acesse o arquivo `index.php` para configurar o ponto de entrada
-2. Configure as rotas principais em `routes/main.php`
-3. Customize as variáveis CSS em `css/root.css`
-4. Adapte o layout base em `view/home-base.php`
+## 🎯 Funcionalidades Principais
 
-## 📖 Documentação
+### Página Inicial (Catálogo)
+- Grid de produtos
+- Botão "Adicionar ao Carrinho"
+- Notificação visual ao adicionar produto
 
-Para diretrizes detalhadas de desenvolvimento, consulte:
-- `templates/preferences.md` - Padrões e convenções de código
-- Comentários nos arquivos base do template
+### Página do Carrinho
+- Lista de produtos adicionados
+- Controles de quantidade (+/-)
+- Botão remover
+- Total do carrinho
+- Botão finalizar pedido
 
-## 🎯 Características
+### Página de Pedidos
+- Histórico completo
+- Cards com informações detalhadas
+- Data, hora e status
+- Total de cada pedido
 
-- **MVC organizado** para melhor estruturação
-- **Sistema de rotas** flexível
-- **CSS responsivo** com variáveis
-- **Includes PHP** para otimização
-- **Estrutura de segurança** com arquivos index.html
+## 🎨 Paleta de Cores
+
+- **Primária**: `rgba(102, 126, 234, 1)` - Azul
+- **Secundária**: `rgba(118, 75, 162, 1)` - Roxo
+- **Sucesso**: `rgba(67, 233, 123, 1)` - Verde
+- **Erro**: `rgba(220, 53, 69, 1)` - Vermelho
+
+## 📝 Observações
+
+- O banco de dados WebSQL é inicializado automaticamente
+- 10 produtos são cadastrados automaticamente na primeira execução
+- 1 usuário fictício é criado (ID: 1)
+- O carrinho persiste entre sessões via LocalStorage
+- Os pedidos são salvos permanentemente no WebSQL
+
+## 👨‍💻 Desenvolvedor
+
+Projeto desenvolvido como parte do processo seletivo para Dev JavaScript na Arturia Tech.
 
 ---
 
-**Desenvolvido para acelerar o desenvolvimento de projetos web com padrões consistentes e estrutura organizacional sólida.**
+**Data**: Novembro de 2025

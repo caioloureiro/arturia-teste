@@ -35,8 +35,23 @@
 
 --fontSize:0.8vw;
 --lineHeight:0.9vw;
+--fontSizeTitulo:1.8vw;
+--lineHeightTitulo:2.2vw;
+--fontSizeTexto:0.9vw;
+--lineHeightTexto:1.3vw;
+--fontSizeBtn:0.85vw;
+
+--corPrimaria:rgba(102, 126, 234, 1);
+--corSecundaria:rgba(118, 75, 162, 1);
+--corAcento:rgba(240, 147, 251, 1);
+--corSucesso:rgba(67, 233, 123, 1);
+--corAlerta:rgba(255, 193, 7, 1);
+--corErro:rgba(220, 53, 69, 1);
 --corFonte:rgba(58,58,68,1);
---corFundo:transparent;
+--corFonteClara:rgba(108,117,125,1);
+--corFundo:rgba(248,249,250,1);
+--corCard:white;
+--corBorda:rgba(222,226,230,1);
 
 }
 /*End - css/root.css*/

@@ -1,7 +1,7 @@
 <?php
 
 require "view/cabecalho.php";
-require "view/home-0.php";
+require "view/pedidos.php";
 require "view/footer.php";
 
 ?>

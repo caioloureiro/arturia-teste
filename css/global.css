@@ -14,11 +14,12 @@ font-size: var(--fontSize);
 line-height:var(--lineHeight);
 color:var(--corFonte);
 background-color:var(--corFundo);
-
+/*
 background-image:url("templates/home.png");
 background-repeat:no-repeat;
 background-position:left top;
 background-size:100% auto;
+*/
 }
 a,
 a:active,
