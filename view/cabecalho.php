@@ -1,7 +1,7 @@
 <!-- Start - view/cabecalho.php !-->
 <header>
 	<div class="container">
-		<a href="/" class="logo">🛒 E-commerce</a>
+		<a href="./" class="logo">🛒 E-commerce</a>
 		<nav>
 			<a href="./" class="nav-link" data-page="home">Produtos</a>
 			<a href="?pagina=carrinho" class="nav-link" data-page="carrinho">

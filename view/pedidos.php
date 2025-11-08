@@ -15,7 +15,7 @@
 				<div class="carrinho-vazio">
 					<h2>Você ainda não fez nenhum pedido</h2>
 					<p>Comece a comprar agora!</p>
-					<a href="/" class="btn btn-primario" style="margin-top:2vw;">Ver Produtos</a>
+					<a href="./" class="btn btn-primario" style="margin-top:2vw;">Ver Produtos</a>
 				</div>
 			<?php else: ?>
 				<?php foreach( $pedidos_array as $pedido ): ?>

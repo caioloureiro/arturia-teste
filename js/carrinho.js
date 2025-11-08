@@ -29,15 +29,17 @@ const Carrinho = {
 		this.mostrarNotificacao('Produto adicionado ao carrinho!');
 	},
 	remover: function(produtoId) {
+		console.log('Removendo produto ID:', produtoId);
 		this.itens = this.itens.filter(function(item) {
-			return item.id !== produtoId;
+			return parseInt(item.id) !== parseInt(produtoId);
 		});
+		console.log('Carrinho após remover:', this.itens);
 		this.salvarCarrinho();
 		this.atualizarBadge();
 	},
 	aumentarQuantidade: function(produtoId) {
 		const item = this.itens.find(function(item) {
-			return item.id === produtoId;
+			return parseInt(item.id) === parseInt(produtoId);
 		});
 		if (item) {
 			item.quantidade++;
@@ -46,7 +48,7 @@ const Carrinho = {
 	},
 	diminuirQuantidade: function(produtoId) {
 		const item = this.itens.find(function(item) {
-			return item.id === produtoId;
+			return parseInt(item.id) === parseInt(produtoId);
 		});
 		if (item && item.quantidade > 1) {
 			item.quantidade--;
@@ -75,9 +77,12 @@ const Carrinho = {
 			})
 		})
 		.then(function(response) {
-			return response.json();
+			console.log('Resposta do servidor:', response.status);
+			return response.text();
 		})
-		.then(function(data) {
+		.then(function(text) {
+			console.log('Texto recebido:', text);
+			const data = JSON.parse(text);
 			if (data.sucesso) {
 				self.itens = [];
 				self.salvarCarrinho();
@@ -88,8 +93,8 @@ const Carrinho = {
 			}
 		})
 		.catch(function(error) {
-			console.error('Erro:', error);
-			alert('Erro ao finalizar pedido');
+			console.error('Erro na requisição:', error);
+			alert('Erro ao finalizar pedido: ' + error.message);
 		});
 	},
 	limpar: function() {

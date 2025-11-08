@@ -1,15 +1,13 @@
-<?php
+﻿<?php
 
 if( $_SERVER['HTTP_HOST'] == 'localhost' ){
 
-	require 'model/conexao-off.php';
+	require __DIR__ . '/conexao-off.php';
 
 }else{
 	
-	require 'model/conexao-on.php';
+	require __DIR__ . '/conexao-on.php';
 	
 }
-
-//dd( $conn );
 
 ?>
