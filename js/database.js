@@ -6,23 +6,33 @@ const DB = {
 	descricao: 'Banco de dados do E-commerce',
 	tamanho: 5 * 1024 * 1024,
 	init: function() {
+		if (!window.openDatabase) {
+			console.error('WebSQL não suportado');
+			alert('Seu navegador não suporta WebSQL. Por favor, use Chrome ou Safari.');
+			return;
+		}
 		try {
 			this.db = openDatabase(this.nome, this.versao, this.descricao, this.tamanho);
 			this.criarTabelas();
-			this.popularProdutos();
-			this.criarUsuarioFicticio();
 			console.log('Banco de dados inicializado com sucesso');
 		} catch (e) {
 			console.error('Erro ao inicializar banco:', e);
-			alert('Seu navegador não suporta WebSQL. Por favor, use Chrome ou Safari.');
+			alert('Erro ao inicializar banco de dados: ' + e.message);
 		}
 	},
 	criarTabelas: function() {
+		const self = this;
 		this.db.transaction(function(tx) {
 			tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, nome TEXT, email TEXT, created_at DATETIME)');
 			tx.executeSql('CREATE TABLE IF NOT EXISTS produtos (id INTEGER PRIMARY KEY, codigo TEXT, descricao TEXT, preco REAL, imagem TEXT)');
 			tx.executeSql('CREATE TABLE IF NOT EXISTS pedidos (id INTEGER PRIMARY KEY AUTOINCREMENT, usuario_id INTEGER, total REAL, status TEXT, created_at DATETIME)');
 			tx.executeSql('CREATE TABLE IF NOT EXISTS itens_pedido (id INTEGER PRIMARY KEY AUTOINCREMENT, pedido_id INTEGER, produto_id INTEGER, quantidade INTEGER, preco_unitario REAL)');
+		}, function(error) {
+			console.error('Erro ao criar tabelas:', error);
+		}, function() {
+			console.log('Tabelas criadas com sucesso');
+			self.criarUsuarioFicticio();
+			self.popularProdutos();
 		});
 	},
 	criarUsuarioFicticio: function() {
