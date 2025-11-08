@@ -1,12 +1,12 @@
 <?php
 
 /*Start - Head*/
-$head_title = 'Título da página até 77 caracteres.';
-$head_description = 'Descrição com até 150 caracteres, mostrada na busca.';
-$head_link = 'http://www.link.da.pagina.com.br';
-$head_autor = 'Caio Loureiro - 47 9 8804-6845';
-$head_imagem = 'http://www.link.da.pagina.com.br/img/imagem.jpg';
-$head_nome = 'Nome da página - diferente do título';
+$head_title = 'E-commerce Arturia - Produtos de Tecnologia e Informática';
+$head_description = 'Loja online com os melhores produtos de tecnologia: notebooks, periféricos, componentes e acessórios para gamers. Compre com segurança!';
+$head_link = 'http://localhost:8000';
+$head_autor = 'Caio Loureiro - Desenvolvedor Web';
+$head_imagem = 'https://via.placeholder.com/800x600/667eea/ffffff?text=E-commerce+Arturia';
+$head_nome = 'E-commerce Arturia';
 $head_favicon = 'img/favicon.png';
 /*End - Head*/
 
