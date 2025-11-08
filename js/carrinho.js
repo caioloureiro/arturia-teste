@@ -29,11 +29,11 @@ const Carrinho = {
 		this.mostrarNotificacao('Produto adicionado ao carrinho!');
 	},
 	remover: function(produtoId) {
-		console.log('Removendo produto ID:', produtoId);
+		// console.log('Removendo produto ID:', produtoId);
 		this.itens = this.itens.filter(function(item) {
 			return parseInt(item.id) !== parseInt(produtoId);
 		});
-		console.log('Carrinho após remover:', this.itens);
+		// console.log('Carrinho após remover:', this.itens);
 		this.salvarCarrinho();
 		this.atualizarBadge();
 	},
@@ -77,11 +77,11 @@ const Carrinho = {
 			})
 		})
 		.then(function(response) {
-			console.log('Resposta do servidor:', response.status);
+			// console.log('Resposta do servidor:', response.status);
 			return response.text();
 		})
 		.then(function(text) {
-			console.log('Texto recebido:', text);
+			// console.log('Texto recebido:', text);
 			const data = JSON.parse(text);
 			if (data.sucesso) {
 				self.itens = [];

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 function renderizarCarrinho() {
 	const container = document.getElementById('carrinho-container');
-	console.log('Itens no carrinho:', Carrinho.itens);
+	// console.log('Itens no carrinho:', Carrinho.itens);
 	if (Carrinho.itens.length === 0) {
 		container.innerHTML = '<div class="carrinho-vazio"><h2>Seu carrinho está vazio</h2><p>Adicione produtos para continuar comprando</p><a href="./" class="btn btn-primario" style="margin-top:2vw;">Ver Produtos</a></div>';
 		return;
@@ -27,17 +27,17 @@ function renderizarCarrinho() {
 	container.innerHTML = html;
 }
 function aumentarQtd(produtoId) {
-	console.log('Aumentando quantidade do produto:', produtoId);
+	// console.log('Aumentando quantidade do produto:', produtoId);
 	Carrinho.aumentarQuantidade(produtoId);
 	renderizarCarrinho();
 }
 function diminuirQtd(produtoId) {
-	console.log('Diminuindo quantidade do produto:', produtoId);
+	// console.log('Diminuindo quantidade do produto:', produtoId);
 	Carrinho.diminuirQuantidade(produtoId);
 	renderizarCarrinho();
 }
 function removerItem(produtoId) {
-	console.log('Removendo produto ID:', produtoId);
+	// console.log('Removendo produto ID:', produtoId);
 	Carrinho.remover(produtoId);
 	renderizarCarrinho();
 }

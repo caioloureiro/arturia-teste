@@ -1,12 +1,12 @@
 /*Start - css/scrollbar.css*/
 *{
-scrollbar-color: blue red;
+scrollbar-color: var(--corPrimaria) white;
 }
 ::-webkit-scrollbar{
-background-color:red;
+background-color:white;
 }
 ::-webkit-scrollbar-thumb{
-background-color:blue;
+background-color:var(--corPrimaria);
 border-radius:50px;
 }
 /*End - css/scrollbar.css*/

@@ -54,4 +54,20 @@
 --corBorda:rgba(222,226,230,1);
 
 }
+
+@media only screen and (max-width:1024px) and (orientation: portrait){
+
+:root{
+	
+--fontSize:calc(0.8vw * 5);
+--lineHeight:calc(0.9vw * 5);
+--fontSizeTitulo:calc(1.8vw * 5);
+--lineHeightTitulo:calc(2.2vw * 5);
+--fontSizeTexto:calc(0.9vw * 5);
+--lineHeightTexto:calc(1.3vw * 5);
+--fontSizeBtn:calc(0.85vw * 5);
+
+}
+
+}
 /*End - css/root.css*/
