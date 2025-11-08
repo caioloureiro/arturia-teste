@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://seudominio.com/sitemap.xml
+
+# Bloquear arquivos sensíveis
+Disallow: /controller/
+Disallow: /model/
+Disallow: /routes/
+Disallow: /templates/
+Disallow: /*.php$
+Disallow: /*.md$
+Disallow: /.git/
+Disallow: /.gitignore

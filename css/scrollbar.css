@@ -1,0 +1,12 @@
+/*Start - css/scrollbar.css*/
+*{
+scrollbar-color: blue red;
+}
+::-webkit-scrollbar{
+background-color:red;
+}
+::-webkit-scrollbar-thumb{
+background-color:blue;
+border-radius:50px;
+}
+/*End - css/scrollbar.css*/
