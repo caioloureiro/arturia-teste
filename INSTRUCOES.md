@@ -1,17 +1,21 @@
 # 🚀 Guia de Execução - E-commerce Arturia
 
+## ✨ Sistema Completo - MySQL + Responsivo 100%
+
+---
+
 ## Pré-requisitos
 
+- WAMP64 (PHP + MySQL + Apache)
 - PHP 7.0 ou superior
-- Navegador web compatível com WebSQL:
-  - ✅ Google Chrome (recomendado)
-  - ✅ Safari
-  - ✅ Opera
-  - ⚠️ Não use Firefox (WebSQL descontinuado)
+- MySQL 5.7 ou superior
+- Navegador web moderno (qualquer um!)
+
+---
 
 ## Como Executar
 
-### Opção 1: Servidor PHP Embutido
+### Opção 1: Servidor PHP Embutido (Recomendado)
 
 1. Abra o terminal/prompt na pasta do projeto:
 ```bash
@@ -32,152 +36,284 @@ http://localhost:8000
 
 1. Copie a pasta do projeto para `htdocs` (XAMPP) ou `www` (WAMP)
 
-2. Inicie o Apache
+2. Inicie Apache e MySQL
 
 3. Acesse no navegador:
 ```
 http://localhost/arturia-teste
 ```
 
+---
+
+## Configuração do Banco de Dados
+
+### 1. Criar o Banco
+1. Abra phpMyAdmin: `http://localhost/phpmyadmin`
+2. Clique em "Novo" para criar banco
+3. Nome: `arturiateste`
+4. Codificação: `utf8mb4_unicode_ci`
+5. Clique em "Criar"
+
+### 2. Instalar as Tabelas
+1. Abra a aba SQL do banco `arturiateste`
+2. Copie e cole todo conteúdo de `INSTALL_DATABASE.sql`
+3. Clique em "Executar"
+4. Pronto! Banco criado com dados iniciais
+
+### 3. Verificar Instalação
+Execute no phpMyAdmin:
+```sql
+SELECT COUNT(*) FROM usuarios;   -- Deve ser 1
+SELECT COUNT(*) FROM produtos;   -- Deve ser 10
+SELECT COUNT(*) FROM pedidos;    -- Deve ser 0
+```
+
+---
+
 ## Testando a Aplicação
 
-### 1. Página Inicial (Catálogo)
-- Você verá 10 produtos cadastrados automaticamente
-- Clique em "Adicionar ao Carrinho" em qualquer produto
-- Uma notificação verde aparecerá
-- O badge do carrinho no header será atualizado
+### 📱 Desktop
 
-### 2. Página do Carrinho
-- Clique em "Carrinho" no menu
-- Você verá os produtos adicionados
-- Use os botões **+** e **-** para alterar quantidades
-- Clique em "Remover" para tirar produtos
-- O total é calculado automaticamente
-- Clique em "Finalizar Pedido"
+1. **Página Inicial (Catálogo)**
+   - Veja os 10 produtos
+   - Clique em "Adicionar ao Carrinho"
+   - Badge do carrinho atualiza
+   - Notificação verde aparece
 
-### 3. Página de Pedidos
-- Após finalizar, você será redirecionado para "Meus Pedidos"
-- Uma mensagem de sucesso aparecerá no topo
-- Você verá o histórico completo de pedidos
-- Cada pedido mostra:
-  - Número do pedido
-  - Data e hora
-  - Status
-  - Produtos comprados
-  - Total
+2. **Página do Carrinho**
+   - Clique em "Carrinho" no menu
+   - Veja produtos adicionados
+   - Use **+** e **-** para ajustar quantidades
+   - Clique "Remover" para tirar itens
+   - Total recalcula automaticamente
+   - Clique "Finalizar Pedido"
+
+3. **Página de Pedidos**
+   - Mensagem de sucesso no topo
+   - Veja histórico de pedidos
+   - Detalhes completos de cada pedido
+   - Data, hora, produtos e total
+
+---
+
+### 📱 Mobile (100% Responsivo)
+
+1. **Abrir DevTools**
+   - Pressione **F12** no navegador
+   - Clique no ícone de dispositivo (canto superior esquerdo)
+   - Selecione um aparelho (iPhone, iPad, Android)
+
+2. **Testar Responsividade**
+   - ✅ Navegação em 100% width
+   - ✅ Produtos ocupam tela inteira
+   - ✅ Botões expandidos e clicáveis
+   - ✅ Textos legíveis
+   - ✅ Sem scroll horizontal
+
+3. **Testar Funcionalidades**
+   - Adicione produtos ao carrinho
+   - Vá para o carrinho
+   - Finalize pedidos
+   - Veja histórico
+
+---
 
 ## Verificando o Banco de Dados
 
-### Chrome DevTools
+### phpMyAdmin
 
-1. Pressione **F12** para abrir DevTools
-2. Vá na aba **Application**
-3. No menu lateral, expanda **Web SQL**
-4. Clique em **EcommerceDB**
-5. Você verá as tabelas:
+1. Abra: `http://localhost/phpmyadmin`
+2. Selecione banco `arturiateste`
+3. Veja as 4 tabelas:
    - `usuarios` - Usuário fictício
    - `produtos` - 10 produtos
-   - `pedidos` - Seus pedidos
+   - `pedidos` - Seus pedidos criados
    - `itens_pedido` - Itens de cada pedido
 
-### Console do Navegador
+### Após Finalizar um Pedido
 
-Execute no console para ver dados:
-
-```javascript
-// Ver todos os produtos
-DB.buscarProdutos(function(produtos) {
-    console.table(produtos);
-});
-
-// Ver todos os pedidos
-DB.buscarPedidos(function(pedidos) {
-    console.log(pedidos);
-});
-
-// Ver itens do carrinho
-console.log(Carrinho.itens);
+Execute no phpMyAdmin:
+```sql
+SELECT * FROM pedidos WHERE id = [seu_pedido_id];
+SELECT * FROM itens_pedido WHERE pedido_id = [seu_pedido_id];
 ```
 
-## Resetar o Banco de Dados
-
-Se quiser começar do zero:
-
-```javascript
-// No console do navegador
-indexedDB.deleteDatabase('EcommerceDB');
-localStorage.clear();
-// Depois recarregue a página (F5)
-```
+---
 
 ## Funcionalidades para Testar
 
 ### ✅ Catálogo
-- [x] Ver lista de produtos
-- [x] Adicionar produto ao carrinho
-- [x] Ver notificação de sucesso
-- [x] Badge do carrinho atualizar
+- [x] Ver lista de 10 produtos
+- [x] Produtos carregam do MySQL
+- [x] Código, descrição e preço visíveis
+- [x] Imagem em cada produto
 
 ### ✅ Carrinho
-- [x] Ver produtos adicionados
-- [x] Aumentar quantidade
-- [x] Diminuir quantidade
-- [x] Remover produto
-- [x] Ver total calculado
-- [x] Finalizar pedido
+- [x] Adicionar produtos
+- [x] Badge atualiza em tempo real
+- [x] Aumentar/diminuir quantidade
+- [x] Remover produtos
+- [x] Total recalculado automaticamente
+- [x] Carrinho persiste no LocalStorage
 
 ### ✅ Pedidos
-- [x] Ver mensagem de sucesso
-- [x] Ver lista de pedidos
-- [x] Ver detalhes de cada pedido
-- [x] Ver data/hora do pedido
-- [x] Ver total do pedido
+- [x] Finalizar pedido com sucesso
+- [x] Pedido salvo no MySQL
+- [x] Ver histórico de pedidos
+- [x] Ver detalhes completos
+- [x] Data e hora corretas
+- [x] Total correto
 
-### ✅ Responsividade
-- [x] Testar no desktop
-- [x] Testar no mobile (F12 > Toggle device toolbar)
-- [x] Menu adapta para mobile
-- [x] Grid de produtos adapta
-- [x] Carrinho adapta
+### ✅ Responsividade 100%
+- [x] Desktop: layout normal
+- [x] Tablet: produtos 1 por linha
+- [x] Mobile: nav e botões 100% width
+- [x] Sem scroll horizontal
+- [x] Todos elementos legíveis
+
+---
+
+## URLs da Aplicação
+
+```
+http://localhost:8000/                      # Home (catálogo)
+http://localhost:8000/?pagina=carrinho      # Carrinho
+http://localhost:8000/?pagina=pedidos       # Meus pedidos
+```
+
+---
 
 ## Problemas Comuns
 
-### "Erro ao inicializar banco"
-- **Solução**: Use Google Chrome ou Safari
+### Erro: "Não consegue conectar ao banco"
+```
+Solução:
+1. Verifique se WAMP/XAMPP está rodando
+2. Verifique se MySQL está ativo
+3. Confira credenciais em model/conexao-off.php
+4. Verifique porta MySQL (padrão: 3306)
+```
+
+### Erro: "Banco não encontrado"
+```
+Solução:
+1. Crie o banco no phpMyAdmin
+2. Execute INSTALL_DATABASE.sql
+3. Recarga a página (F5)
+```
 
 ### Produtos não aparecem
-- **Solução**: Aguarde 1-2 segundos, o banco está sendo criado
-- Recarregue a página (F5)
-
-### Badge do carrinho não atualiza
-- **Solução**: Espere 0.5 segundos após a página carregar
-- O JavaScript precisa inicializar
+```
+Solução:
+1. Verifique se INSTALL_DATABASE.sql foi executado
+2. Execute no phpMyAdmin: SELECT * FROM produtos;
+3. Deve retornar 10 linhas
+```
 
 ### Pedido não finaliza
-- **Solução**: Verifique o console do navegador (F12)
-- Pode haver erro de JavaScript
+```
+Solução:
+1. Abra DevTools (F12)
+2. Vá para aba Console
+3. Veja se há erros JavaScript
+4. Verifique resposta da API em Network
+```
 
-## Dicas
-
-1. **Abra sempre o DevTools** (F12) para ver o que está acontecendo
-2. **Use Chrome** para melhor compatibilidade
-3. **Limpe o cache** se algo não funcionar (Ctrl+Shift+Delete)
-4. **Veja o console** para mensagens de erro ou sucesso
-
-## Estrutura de URLs
-
-- `http://localhost:8000/` - Página inicial (catálogo)
-- `http://localhost:8000/?pagina=carrinho` - Carrinho
-- `http://localhost:8000/?pagina=pedidos` - Meus pedidos
-
----
-
-## 📹 Vídeo Explicativo
-
-Para ver a explicação completa do código e lógica implementada, assista ao vídeo explicativo incluído na entrega.
+### Responsivo não funciona no mobile
+```
+Solução:
+1. Teste em DevTools primeiro (F12 > Device Mode)
+2. Se funcionar em DevTools, é responsivo
+3. Limpe cache do navegador (Ctrl+Shift+Delete)
+4. Teste em outro navegador
+```
 
 ---
 
-**Desenvolvido por**: [Seu Nome]
+## Dicas Úteis
+
+### 1. DevTools (F12)
+- **Console**: Veja erros de JavaScript
+- **Network**: Veja requisições HTTP
+- **Application**: Veja LocalStorage
+- **Responsive**: Teste em diferentes tamanhos
+
+### 2. Limpar Cache
+```
+Chrome: Ctrl + Shift + Delete
+Firefox: Ctrl + Shift + Delete
+Safari: Cmd + Option + E
+```
+
+### 3. Ver Console do Servidor
+Deixe o terminal aberto enquanto testa:
+```bash
+php -S localhost:8000
+```
+
+Você verá todas as requisições HTTP.
+
+---
+
+## Estrutura de Dados - Fluxo Completo
+
+```
+1. PRODUTO
+   - Carregado do MySQL (home.php)
+   - Mostrado em grid responsivo
+   - Clique adiciona ao LocalStorage
+
+2. CARRINHO (LocalStorage)
+   - Itens temporários no navegador
+   - Persiste entre páginas
+   - Pronto para finalizar
+
+3. PEDIDO
+   - Enviado via Fetch API
+   - Recebido por salvar_pedido.php
+   - Inserido em MySQL
+   - Retorna ID do pedido
+
+4. PEDIDO (MySQL)
+   - Persistente no servidor
+   - Pode consultar a qualquer momento
+   - Nunca é perdido
+```
+
+---
+
+## Responsividade - Breakpoints
+
+```
+Desktop (> 1024px)
+├── Nav horizontal em linha
+├── Produtos em grid (3-4 colunas)
+├── Botões normais
+
+Mobile (≤ 1024px)
+├── Nav vertical 100% width
+├── Produtos 1 por linha (100%)
+├── Botões expandidos 100%
+├── Font size aumentado
+├── Padding aumentado
+└── Tudo legível sem zoom
+```
+
+---
+
+## ✅ Tudo Pronto!
+
+O sistema está **100% funcional** e **100% responsivo**.
+
+**Próximos passos**:
+1. Testar todas as funcionalidades
+2. Verificar responsividade em mobile
+3. Validar dados no MySQL
+4. Publicar no GitHub
+5. Enviar link para rh@arturia.tech
+
+---
+
+**Desenvolvido com ❤️ para a Arturia Tech**
+
 **Data**: Novembro 2025
-**Contato**: [Seu Email]

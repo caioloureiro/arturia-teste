@@ -2,46 +2,50 @@
 
 ## 📋 Descrição do Projeto
 
-Aplicação web de e-commerce desenvolvida para o processo seletivo de Dev JavaScript da Arturia. A aplicação permite que usuários visualizem produtos, adicionem ao carrinho e finalizem compras, além de consultar o histórico de pedidos.
+Aplicação web de e-commerce desenvolvida para o processo seletivo de Dev JavaScript da Arturia. Sistema completo com banco de dados MySQL, PHP backend e frontend responsivo 100% funcional em desktop e mobile.
 
 ## 🚀 Tecnologias Utilizadas
 
 - **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
 - **Backend**: PHP 7+ com MySQL
-- **Banco de Dados**: MySQL 5.7+
-- **Servidor Local**: WAMP64 (Windows)
+- **Banco de Dados**: MySQL 5.7+ (WAMP64)
 - **Arquitetura**: MVC Simplificado
+- **Responsividade**: 100% - Desktop e Mobile
 
 ## ✨ Funcionalidades Implementadas
 
 ### 1. Catálogo de Produtos
-- Listagem de 10 produtos com código, descrição, preço e imagem
-- Layout em grid responsivo
-- Dados carregados do MySQL via PHP
-- Botão "Adicionar ao Carrinho"
+- 10 produtos cadastrados no MySQL
+- Grid responsivo 100% (desktop e mobile)
+- Campos: código, descrição, preço e imagem
+- Carregamento via PHP Models
 
 ### 2. Carrinho de Compras
 - Adicionar/remover produtos
-- Aumentar/diminuir quantidade com botões +/-
-- Cálculo automático do total
-- Badge com quantidade de itens no menu
+- Controles de quantidade (+/-)
+- Cálculo automático de totais
+- Badge atualizado em tempo real
 - Persistência via LocalStorage
 
 ### 3. Finalização de Pedido
-- Salvar pedido no MySQL via API PHP
-- Gerar número do pedido automaticamente
+- API PHP REST para salvar pedidos
+- Inserção automática em MySQL
+- Geração de ID de pedido
 - Limpar carrinho após finalização
-- Mensagem de sucesso com ID do pedido
+- Notificação de sucesso
 
 ### 4. Consulta de Pedidos
-- Listagem de todos os pedidos do usuário
-- Detalhes de cada pedido (produtos, quantidades, valores)
-- Data, hora e status do pedido
+- Histórico completo de pedidos
+- Detalhes itemizados
+- Data, hora e status
+- Consulta direta do MySQL
 
-### 5. Design Responsivo
-- Layout adaptável para desktop e mobile
-- Media queries para diferentes tamanhos de tela
-- Interface moderna e intuitiva
+### 5. Design Responsivo 100%
+- Layout adaptado para todas as resoluções
+- Media queries otimizadas
+- Navegação mobile em width 100%
+- Produtos em tela cheia no mobile
+- Botões expandidos no mobile
 
 ## 🗄️ Estrutura do Banco de Dados (MySQL)
 
